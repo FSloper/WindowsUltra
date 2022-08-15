@@ -1,237 +1,136 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "printf.c"
 FILE *fp = NULL;
-void logwu();
-
-void Menu();
+//è¯·ä½¿ç”¨gb2312ç¼–ç æ‰“å¼€æºç ,å¦åˆ™ä¹±ç  
 void welcome();
 
-void win11re10Menu();
-void win11re10();
+void controlpanel();
 
 void Rightclick();
-void RightclickMenu();
 
 int main()
 {
-	int choice = '\0';
-	welcome();
-	while (1)
-	{
-		
-		Menu();
-		scanf("%d", &choice);
-		fp = fopen("logs.txt", "a");
-		fprintf(fp, "%d,",choice );
-		switch (choice)
-		{
-		case 0:
-			
-			system("CLS");
-			win11re10();
-			break;
-		case 1:
-			
-			system("powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61\n");		//´ò¿ª×¿Ô½ĞÔÄÜ 
-			system("powercfg.cpl");		//´ò¿ªµçÔ´Ñ¡Ïî¿ØÖÆÃæ°å 
-			break;
-		case 2:
-
-			break;
-		case 3:
-
-			break;
-		case 4:
-
-			break;
-		case 5:
-			system("start powershell logs.txt");
-			break;
-		case 6:
-			
-			system("start powershell stop-process -name explorer -force");
-			
-			break;
+    int choice = '\0';
+    welcome();
+    while (1)
+    {
+        Menu();
+        scanf("%d", &choice);
+        fp = fopen("logs.txt", "a");
+        fprintf(fp, "%d,", choice);
+        switch (choice)
+        {
+        case 0:
+            system("start powershell"); 
+            break;
+        case 1:
+            system("start cmd");
+            break;
+        case 2:
+			//system("powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61\n"); //æ‰“å¼€å“è¶Šæ€§èƒ½
+            system("CLS");
+			controlpanel();                                                   //æ§åˆ¶é¢æ¿
+            break;
+        case 3:
+			system("Firewall.cpl");  
+            break;
+        case 4:
+			system("appwiz.cpl");
+            break;
+        case 5:
+            system("hdwwiz.cpl");
+            break;
+        case 6:
+        	system("notepad.exe logs.txt");
+            break;
 		case 7:
-			fputs("Ç°ÃæÊÇÄãÉÏ´ÎµÄ²Ù×÷ÀúÊ·,½¨Òé±¸·İ,·ÀÖ¹ÓĞÒş²ØÎÊÌâ...(Ã¿´Î´ò¿ª¶¼»á¼ÌĞøÇ°ÃæµÄ»»ĞĞĞ´,²¢²»ÊÇÖØ¸´¼ÇÂ¼)\n", fp);
-			exit(0);
-			break;
-		default:
-			fputs("Ç°ÃæÊÇÄãÉÏ´ÎµÄ²Ù×÷ÀúÊ·,½¨Òé±¸·İ,·ÀÖ¹ÓĞÒş²ØÎÊÌâ...(Ã¿´Î´ò¿ª¶¼»á¼ÌĞøÇ°ÃæµÄ»»ĞĞĞ´,²¢²»ÊÇÖØ¸´¼ÇÂ¼)\n", fp);
-			exit(0);
-			break;
-		}
-		
+            system("start powershell stop-process -name explorer -force");
+            break;
+		case 8:
+            fputs("\t\tå‰é¢æ˜¯ä½ ä¸Šæ¬¡çš„æ“ä½œå†å²,å»ºè®®å¤‡ä»½,é˜²æ­¢æœ‰éšè—é—®é¢˜...(æ¯æ¬¡æ‰“å¼€éƒ½ä¼šç»§ç»­å‰é¢çš„æ¢è¡Œå†™,å¹¶ä¸æ˜¯é‡å¤è®°å½•)\n", fp);
+            exit(0);
+            break;
+        default:
+            fputs("\t\tå‰é¢æ˜¯ä½ ä¸Šæ¬¡çš„æ“ä½œå†å²,å»ºè®®å¤‡ä»½,é˜²æ­¢æœ‰éšè—é—®é¢˜...(æ¯æ¬¡æ‰“å¼€éƒ½ä¼šç»§ç»­å‰é¢çš„æ¢è¡Œå†™,å¹¶ä¸æ˜¯é‡å¤è®°å½•)\n", fp);
+            exit(0);
+            break;
+        }
+        system("CLS");
+    }
+    fclose(fp);
+    return 0;
+}
+
+void controlpanel()
+{
+    int choice = '\0';
+    while (1)
+    { 
 		system("CLS");
-	}
-	
-	fclose(fp);
-	return 0;
-}
-/*
-void logwu()
-{
-   int choice = '\0';
-   scanf("%d", &choice);
-   FILE *fp = NULL;
-   fp = fopen("C:/test.txt", "a");
-   ShowWindow(logwu, SW_HIDE);
-   fprintf(fp, "%d",choice);
-   fclose(fp);
-}
-*/
-
-void welcome()
-{
-	printf("\n\n\n\n\n\n");
-	printf("\t\t\t=============»¶Ó­Ê¹ÓÃWindowsUltra===========\n");
-	printf("\n\n\n");
-	printf("\t\t\t=============ÖÆ×÷Õß:   FSloper =============\n");
-	printf("\n\n\n");
-	printf("\t\t\t=============°´»Ø³µ¼ü½øÈëÖ÷²Ëµ¥==============\n");
-	while (getchar() == 0);		//Sleep(2000);Èç¹ûÒªÏÔÊ¾Ò»ÏÂÇëÊ¹ÓÃSleep¼ÓºÁÃëÊı 
-	system("CLS");
-}
-
-void Menu()
-{
-	printf("													   \n");
-	printf("=======================================================\n");
-	printf("                                                       \n");
-	printf("                   WindowsUltra_Bate1.0                \n");
-	printf("                                                       \n");
-	printf("=======================================================\n");
-	printf("                     ÏµÍ³¹¦ÄÜ²Ëµ¥                      \n");
-	printf("                ------------------------               \n");
-	printf("                   0.win11ÕæÄÑÓÃ                       \n");
-	printf("                ------------------------               \n");
-	printf("                   1.´ò¿ª×¿Ô½ĞÔÄÜÄ£Ê½                  \n");
-	printf("                ------------------------               \n");
-	printf("                   2.			                       \n");
-	printf("                ------------------------               \n");
-	printf("                   3.			                       \n");
-	printf("                ------------------------               \n");
-	printf("                   4.			                       \n");
-	printf("                ------------------------               \n");
-	printf("                   5.ÎÒ·´»ÚÁË(´ò¿ªÈÕÖ¾)                 \n");
-	printf("                ------------------------               \n");
-	printf("                   6.ÖØĞÂÆô¶¯×ÊÔ´¹ÜÀíÆ÷                  \n");
-	printf("                ------------------------               \n");
-	printf("                   7.ÍË³ö³ÌĞò»òÈÎÒâ½¨                    \n");
-	printf("=======================================================\n");
-	printf("ÇëÊäÈë²Ëµ¥±àºÅ½øĞĞÑ¡Ôñ£¨0-7£©£º");
+		controlpanelMenu();
+        scanf("%d", &choice);
+        fp = fopen("logs.txt", "a");
+        fprintf(fp, "%d,", choice);
+        switch (choice)
+        {
+        case 0:
+        	system("optionalFeatures.exe");
+            system("appwiz.cpl");
+            break;
+        case 1:
+        	system("sysdm.cpl");
+            break;
+        case 2:
+        	system("dxdiag");
+            break;
+        case 3:
+        	system("powershell.exe del battery-report.html");
+        	system("powershell.exe powercfg /batteryreport");
+        	break;
+        default:
+            system("CLS");
+            main();
+            break;
+        }
+        system("CLS");
+    }
 }
 
-void win11re10()
-{
-	int choice = '\0';
-	
-	while (1)
-	{
-		win11re10Menu();
-		scanf("%d", &choice);
-		fp = fopen("logs.txt", "a");
-		fprintf(fp, "%d,",choice );
-		switch (choice)
-		{
-		case 0:
-			system("CLS");
-			Rightclick();
-			break;
-		default:
-			system("CLS");
-			main();
-			break;
-
-		}
-		
-		system("CLS");
-	}
-}
-
-void win11re10Menu()
-{
-	printf("													   \n");
-	printf("=======================================================\n");
-	printf("                                                       \n");
-	printf("                  win11ÓÃ»§»Ø¹éwin10ÉèÖÃ               \n");
-	printf("                                                       \n");
-	printf("=======================================================\n");
-	printf("                         ¹¦ÄÜ²Ëµ¥                      \n");
-	printf("                ------------------------               \n");
-	printf("                   0.ÓÒ¼ü²Ëµ¥ÑùÊ½ÉèÖÃ                  \n");
-	printf("                ------------------------               \n");
-	printf("                   1.				                   \n");
-	printf("                ------------------------               \n");
-	printf("                   2.			                       \n");
-	printf("                ------------------------               \n");
-	printf("                   3.			                       \n");
-	printf("                ------------------------               \n");
-	printf("                   4.			                       \n");
-	printf("                ------------------------               \n");
-	printf("                   5.			                       \n");
-	printf("                ------------------------               \n");
-	printf("                   6.                                  \n");
-	printf("                ------------------------               \n");
-	printf("                   7.·µ»ØÖ÷Ò³Ãæ                        \n");
-	printf("=======================================================\n");
-	printf("ÇëÊäÈë²Ëµ¥±àºÅ£¨0-7£©£º");
-}
 
 void Rightclick()
 {
-	int choice = '\0';
-	while (1)
-	{
-
-		RightclickMenu();
-		scanf("%d", &choice);
-		fp = fopen("logs.txt", "a");
-		fprintf(fp, "%d,",choice );
-		switch (choice)
-		{
-		case 0:
-			system("reg add HKCU\\Software\\Classes\\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32 /f /ve");
-			system("start powershell stop-process -name explorer -force");
-			break;
-		case 1:
-			system("reg delete HKCU\\Software\\Classes\\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32 /va /f");
-			system("start powershell stop-process -name explorer -force");
-			break;
-		case 2:
-			system("CLS");
-			win11re10();
-			break;
-		default:
-			system("CLS");
-			main();
-			break;
-
-		}
-		
-		system("CLS");
-	}
+    int choice = '\0';
+    while (1)
+    {
+        RightclickMenu();
+        scanf("%d", &choice);
+        fp = fopen("logs.txt", "a");
+        fprintf(fp, "%d,", choice);
+        switch (choice)
+        {
+        case 0:
+            //system("reg add HKCU\\Software\\Classes\\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32 /f /ve");
+            //system("start powershell stop-process -name explorer -force");
+            break;
+        case 1:
+            //system("reg delete HKCU\\Software\\Classes\\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32 /va /f");
+            //system("start powershell stop-process -name explorer -force");
+            break;
+        case 2:
+            system("CLS");
+            //win11re10();
+            break;
+        default:
+            system("CLS");
+            //main();
+            break;
+        }
+        system("CLS");
+    }
 }
 
-void RightclickMenu()
-{
-	printf("													   \n");
-	printf("=======================================================\n");
-	printf("                                                       \n");
-	printf("                   WindowsUltra_Bate1.0                \n");
-	printf("                                                       \n");
-	printf("=======================================================\n");
-	printf("                     ÓÒ¼ü¹¦ÄÜ²Ëµ¥                       \n");
-	printf("                ------------------------               \n");
-	printf("                   0.win11±äwin10ÓÒ¼ü                   \n");
-	printf("                ------------------------               \n");
-	printf("                   1.±ä»Øwin11                         \n");
-	printf("                ------------------------               \n");
-	printf("                   2.·µ»ØÉÏÒ»¼¶                         \n");
-	printf("                ------------------------               \n");
-	printf("                   3.·µ»ØÖ÷²Ëµ¥                         \n");
-	printf("=======================================================\n");
-	printf("ÇëÊäÈë²Ëµ¥±àºÅ½øĞĞÑ¡Ôñ£¨0-3£©£º");
-}
 
+
+//
